@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import { Link } from "react-router-dom"; // Import Link
 import {
   FaShoppingCart,
   FaBoxOpen,
@@ -9,31 +10,24 @@ import {
 const Navbar = () => {
   return (
     <nav className="nav">
-      <a href="/" className="site-title">
+      <Link to="/" className="site-title">
         <FaShoppingCart className="logo-icon" />
         GenZStore
-      </a>
+      </Link>
 
       <ul>
         <li>
-          <a href="/products">
+          <Link to="/products">
             <FaBoxOpen className="icon" />
             Products
-          </a>
+          </Link>
         </li>
 
         <li>
-          <a href="/login">
+          <Link to="/login">
             <FaSignInAlt className="icon" />
             Login
-          </a>
-        </li>
-
-        <li>
-          <a href="/signup">
-            <FaUserPlus className="icon" />
-            SignUp
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
