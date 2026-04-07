@@ -1,11 +1,13 @@
 import { useState } from "react";
-import Image from "../assets/image.png";
-import Logo from "../assets/logo.png";
-import GoogleSvg from "../assets/icons8-google.svg";
+import Image from "../../assets/image.jpg";
+
+import Logo from "../../assets/logo.png";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
+import { Link } from "react-router-dom"; // Import Link
 
-import "./Login.css"
+import "./Login.css";
+import "./responsive.css";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +20,9 @@ const Login = () => {
       <div className="login-right">
         <div className="login-right-container">
           <div className="login-logo">
-            <img src={Logo} alt="" />
+            <Link to="/" className="site-title">
+              <img src={Logo} alt="logo" />
+            </Link>
           </div>
           <div className="login-center">
             <h2>Welcome back!</h2>
@@ -58,16 +62,12 @@ const Login = () => {
               </div>
               <div className="login-center-buttons">
                 <button type="button">Log In</button>
-                <button type="button">
-                  <img src={GoogleSvg} alt="" />
-                  Log In with Google
-                </button>
               </div>
             </form>
           </div>
 
           <p className="login-bottom-p">
-            Don't have an account? <a href="#">Sign Up</a>
+            Don't have an account? <a href="/signup">Sign Up</a>
           </p>
         </div>
       </div>
