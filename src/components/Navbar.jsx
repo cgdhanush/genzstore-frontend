@@ -4,7 +4,6 @@ import {
   FaShoppingCart,
   FaBoxOpen,
   FaSignInAlt,
-  FaUserPlus,
 } from "react-icons/fa";
 
 const Navbar = () => {
