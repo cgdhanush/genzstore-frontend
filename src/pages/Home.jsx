@@ -2,6 +2,7 @@ import Categories from "../components/Categories";
 import Navbar from "../components/Navbar";
 import Footer from "./Footer";
 import HeroSection from "./hero/HeroSection";
+import Products from "./Products";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <Navbar />
       <HeroSection />
       <Categories />
+      <Products />
       <Footer />
     </>
   );

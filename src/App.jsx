@@ -3,6 +3,7 @@ import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import "./App.css"
 
 function App() {
   return (
