@@ -5,12 +5,41 @@ import Logo from "../../assets/logo.png";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
 import { Link } from "react-router-dom"; // Import Link
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import API_BASE_URL from "../../config";
 
 import "./Login.css";
 import "./responsive.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, {
+        email,
+        password,
+      });
+
+      console.log("Login success:", response.data);
+
+      alert("Login successful!");
+
+      localStorage.setItem("token", response.data.token);
+
+      navigate("/home");
+    } catch (error) {
+      console.error("SignUp failed:", error);
+      alert("Invalid credentials");
+    }
+  };
 
   return (
     <div className="login-main">
@@ -28,11 +57,16 @@ const Login = () => {
             <h2>Welcome back!</h2>
             <p>Please enter your details</p>
             <form>
-              <input type="email" placeholder="Email" />
+              <input
+                type="email"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
               <div className="pass-input-div">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 {showPassword ? (
                   <FaEyeSlash
@@ -61,7 +95,9 @@ const Login = () => {
                 </a>
               </div>
               <div className="login-center-buttons">
-                <button type="button">Log In</button>
+                <button type="button" onClick={handleLogin}>
+                  Log In
+                </button>
               </div>
             </form>
           </div>
