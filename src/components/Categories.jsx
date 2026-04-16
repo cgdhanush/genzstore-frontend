@@ -1,25 +1,40 @@
-import React from "react";
-import "./Categories.css";
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 
 const categories = [
-  { name: "Electronics", img: "" },
-  { name: "Fashion", img: "" },
-  { name: "Shoes", img: "" },
-  { name: "Accessories", img: "" },
+  "Electronics",
+  "Fashion",
+  "Shoes",
+  "Accessories",
 ];
 
 const Categories = () => {
   return (
-    <section className="categories-section">
-      <h2>Shop by Category</h2>
-      <div className="categories-grid">
-        {categories.map((cat, index) => (
-          <div key={index} className="category-card">
-            <h3>{cat.name}</h3>
-          </div>
-        ))}
-      </div>
-    </section>
+    <Box component="section" sx={{ py: 6, bgcolor: "background.paper" }}>
+      <Container maxWidth="lg">
+        <Typography variant="h4" fontWeight="bold" gutterBottom>
+          Shop by Category
+        </Typography>
+        <Grid container spacing={3}>
+          {categories.map((name) => (
+            <Grid item xs={12} sm={6} md={3} key={name}>
+              <Paper
+                elevation={2}
+                sx={{
+                  minHeight: 120,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: 3,
+                  px: 2,
+                }}
+              >
+                <Typography variant="h6">{name}</Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 
