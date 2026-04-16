@@ -31,7 +31,11 @@ function ProductCard({ product }) {
       </CardContent>
       <CardActions sx={{ justifyContent: "center", pb: 2 }}>
         <Stack width="100%">
-          <Button variant="contained" size="medium" onClick={() => addToCart(product)}>
+          <Button
+            variant="contained"
+            size="medium"
+            onClick={() => addToCart(product)}
+          >
             Add to Cart
           </Button>
         </Stack>
@@ -39,4 +43,5 @@ function ProductCard({ product }) {
     </Card>
   );
 }
+
 export default ProductCard;

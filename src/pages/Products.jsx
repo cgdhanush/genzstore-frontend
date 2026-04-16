@@ -39,16 +39,19 @@ function Products() {
       <Typography variant="h4" fontWeight="bold" gutterBottom>
         Featured Products
       </Typography>
+
       {loading && (
         <Box display="flex" justifyContent="center" my={4}>
           <CircularProgress />
         </Box>
       )}
+
       {error && (
         <Alert severity="warning" sx={{ mb: 3 }}>
           {error}
         </Alert>
       )}
+
       <Grid container spacing={3}>
         {products.map((item) => (
           <Grid item xs={12} sm={6} md={4} key={item.id}>
