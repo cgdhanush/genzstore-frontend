@@ -4,6 +4,7 @@ import { syncCart as syncCartApi } from "../api/shopApi";
 const CartContext = createContext(null);
 const STORAGE_KEY = "genzstore_cart";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {

@@ -4,7 +4,7 @@ import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import Cart from "./pages/Cart";
+import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 import Layout from "./components/Layout";
 
@@ -42,7 +42,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
