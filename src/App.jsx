@@ -6,17 +6,10 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import { CartProvider } from "./context/CartContext";
 
 const theme = createTheme({
   palette: {
     mode: "light",
-    primary: {
-      main: "#1976d2",
-    },
-    secondary: {
-      main: "#ff4081",
-    },
   },
   typography: {
     fontFamily: "Roboto, Arial, sans-serif",
@@ -27,7 +20,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <CartProvider>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -39,7 +31,6 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
-      </CartProvider>
     </ThemeProvider>
   );
 }
