@@ -5,8 +5,6 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Cart from "./pages/Cart";
 
-import "./App.css"
-
 function App() {
   return (
     <Router>
