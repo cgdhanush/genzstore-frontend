@@ -7,7 +7,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "./ProductCard";
 import localProducts from "../data/products";
 import { fetchProducts } from "../api/shopApi";
 
