@@ -32,11 +32,14 @@ export default function CheckoutItem({
   decreaseQty,
   removeFromCart,
 }: CheckoutItemProps) {
+
+  const baseURL: string = import.meta.env.VITE_API_URL;
+
   return (
     <Card shadow="sm" padding="lg" radius="lg" withBorder>
       <Group justify="space-between" align="center">
         <Group>
-          <Image src={item.imageId} w={90} h={90} radius="md" />
+          <Image src={`${baseURL}/products/${item.imageId}/image`} w={90} h={90} radius="md" />
 
           <Box>
             <Text fw={600} size="lg">
