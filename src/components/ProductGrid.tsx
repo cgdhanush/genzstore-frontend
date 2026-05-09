@@ -2,43 +2,25 @@ import {
   Card,
   Image,
   Text,
-  Button,
   Group,
   SimpleGrid,
   Badge,
 } from "@mantine/core";
 
-const products = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: 1999,
-    image: "https://via.placeholder.com/300",
-    tag: "Best Seller",
-  },
-  {
-    id: 2,
-    name: "Smart Watch",
-    price: 2999,
-    image: "https://via.placeholder.com/300",
-    tag: "New",
-  },
-  {
-    id: 3,
-    name: "Sneakers",
-    price: 1499,
-    image: "https://via.placeholder.com/300",
-    tag: "Hot",
-  },
-];
+import { productsData } from "../data.ts";
+import type { Product } from "../types/product.ts";
+import { useState } from "react";
+import CartButton from "./button/CartButton.tsx";
 
 export default function ProductGrid() {
+  const [products, ] = useState<Product[]>(productsData);
+
   return (
     <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="lg">
       {products.map((product) => (
         <Card key={product.id} shadow="sm" padding="lg" radius="md" withBorder>
           <Card.Section>
-            <Image src={product.image} height={180} alt={product.name} />
+            <Image src={product.imageId} height={180} alt={product.name} />
           </Card.Section>
 
           <Group justify="space-between" mt="md" mb="xs">
@@ -50,9 +32,7 @@ export default function ProductGrid() {
             ₹{product.price}
           </Text>
 
-          <Button fullWidth mt="md" radius="md">
-            Add to Cart
-          </Button>
+          <CartButton product={product}/>
         </Card>
       ))}
     </SimpleGrid>
