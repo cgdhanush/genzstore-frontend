@@ -44,7 +44,7 @@ export type RegisterResponse = {
 
 export async function register(data: RegisterData) {
   return apiClient.post<RegisterResponse>(
-    "/auth/register",
+    "/auth/signup",
     data
   );
 }
