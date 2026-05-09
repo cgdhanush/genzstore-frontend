@@ -15,11 +15,11 @@ import {
   IconShoppingCart,
   IconSun,
   IconMoon,
-  IconUser
 } from "@tabler/icons-react";
 import { useCartStore } from "../../store/cartStore";
 
 import { type JSX } from "react";
+import UserButton from "../button/UserButton";
 
 export default function NavbarLayout({ children }: { children: JSX.Element }) {
   const [opened, { toggle }] = useDisclosure(false);
@@ -79,9 +79,7 @@ export default function NavbarLayout({ children }: { children: JSX.Element }) {
               </ActionIcon>
              
             </Indicator>
-             <ActionIcon component="a" href="/auth">
-                <IconUser />
-              </ActionIcon>
+             <UserButton />
           </Group>
 
           {/* Mobile Burger */}

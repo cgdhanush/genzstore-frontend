@@ -10,6 +10,8 @@ import {
 } from "@mantine/core";
 
 const Hero = () => {
+  const baseURL: string = import.meta.env.VITE_API_URL;
+
   return (
     <Container size="lg" py={80}>
       <SimpleGrid cols={{ base: 1, md: 2 }} spacing={50}>
@@ -36,7 +38,7 @@ const Hero = () => {
 
         <Image
           radius="md"
-          src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+          src={`${baseURL}/products/image/random`}
           alt="Shopping illustration"
         />
       </SimpleGrid>
