@@ -6,8 +6,6 @@ import {
   Button,
   TextInput,
   ActionIcon,
-  Drawer,
-  Stack,
   useMantineColorScheme,
   Anchor,
 } from "@mantine/core";
@@ -22,36 +20,39 @@ import {
 import { type JSX } from "react";
 
 export default function NavbarLayout({ children }: { children: JSX.Element }) {
-  const [opened, { toggle, close }] = useDisclosure(false);
+  const [opened, { toggle }] = useDisclosure(false);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
   return (
     <AppShell header={{ height: 70 }} padding="md">
       <AppShell.Header>
-        <Group h="100%" px="md" justify="space-between">
+        <Group h="100%" px="md" justify="space-between" align="center">
+
+          {/* LEFT: Logo */}
           <Text fw={800} size="lg">
             GenZStore
           </Text>
 
-          {/* Desktop Nav */}
-          <Group gap="md" visibleFrom="sm">
-            <Anchor href="/" >Home</Anchor>
-            <Anchor href="/shop">Shop</Anchor>
-            <Anchor href="/categories">Categories</Anchor>
-            <Anchor href="/deals">Deals</Anchor>
+          {/* CENTER: Nav Links */}
+          <Group gap="xl" justify="center" style={{ flex: 1 }} visibleFrom="sm">
+            <Anchor href="/" c="text" underline="never">
+              Home
+            </Anchor>
+            <Anchor href="/shop" c="text" underline="never">
+              Shop
+            </Anchor>
           </Group>
 
-          {/* Search + Cart */}
+          {/* RIGHT: Actions */}
           <Group gap="sm" visibleFrom="sm">
             <TextInput
               placeholder="Search products..."
               leftSection={<IconSearch size={16} />}
               size="sm"
+              w={300}
             />
-            <ActionIcon
-              variant="light"
-              size="lg"
-              onClick={toggleColorScheme} // ✅ correct
-            >
+
+            <ActionIcon variant="light" size="lg" onClick={toggleColorScheme}>
               {colorScheme === "dark" ? (
                 <IconSun size={18} />
               ) : (
@@ -71,27 +72,6 @@ export default function NavbarLayout({ children }: { children: JSX.Element }) {
         </Group>
       </AppShell.Header>
 
-      {/* MOBILE MENU */}
-      <Drawer opened={opened} onClose={close} padding="md" title="Menu">
-        <Stack>
-          <Text>Home</Text>
-          <Text>Shop</Text>
-          <Text>Categories</Text>
-          <Text>Deals</Text>
-
-          <TextInput
-            placeholder="Search products..."
-            leftSection={<IconSearch size={16} />}
-          />
-
-          <Button fullWidth>Cart</Button>
-          <Button fullWidth variant="light">
-            Login
-          </Button>
-        </Stack>
-      </Drawer>
-
-      {/* PAGE CONTENT */}
       <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );

@@ -20,8 +20,6 @@ export default function Footer() {
           <Text fw={500}>Quick Links</Text>
           <Anchor href="/" c="text" size="sm">Home</Anchor>
           <Anchor href="/shop" c="text" size="sm">Shop</Anchor>
-          <Anchor href="/categories" c="text" size="sm">Categories</Anchor>
-          <Anchor href="/deals" c="text" size="sm">Deals</Anchor>
         </Stack>
 
         {/* Support */}
