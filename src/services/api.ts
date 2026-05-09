@@ -11,6 +11,7 @@ class APIClient {
       },
     });
 
+    // Attach token automatically
     this.client.interceptors.request.use((config) => {
       const token = localStorage.getItem("access_token");
 
@@ -22,15 +23,27 @@ class APIClient {
     });
   }
 
-  // GET method
+  // GET
   async get<T>(url: string) {
     const response = await this.client.get<T>(url);
     return response.data;
   }
 
-  // PoST method
-  async post<T>(url: string) {
-    const response = await this.client.get<T>(url);
+  // POST
+  async post<T>(url: string, data?: unknown) {
+    const response = await this.client.post<T>(url, data);
+    return response.data;
+  }
+
+  // PUT
+  async put<T>(url: string, data?: unknown) {
+    const response = await this.client.put<T>(url, data);
+    return response.data;
+  }
+
+  // DELETE
+  async delete<T>(url: string) {
+    const response = await this.client.delete<T>(url);
     return response.data;
   }
 }
