@@ -1,18 +1,21 @@
-export type  CartItem = {
-  id: number;
-  name: string;
-  price: number;
-  imageId: string;
-  category: string;
-  qty: number;
+import type { Product } from "./product";
+
+export interface Cart {
+  id: string;
+  items: CartItem[];
+}
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
 };
 
 export type CartStore = {
   items: CartItem[];
-
-  addToCart: (item: Omit<CartItem, "qty">) => void;
-  removeFromCart: (id: number) => void;
-  increaseQty: (id: number) => void;
-  decreaseQty: (id: number) => void;
+  fetchCart: () => Promise<void>;
+  addToCart: (item: Omit<CartItem, "quantity">) => void;
+  removeFromCart: (p: Product) => void;
+  increaseQty: (p: Product) => void;
+  decreaseQty: (p: Product) => void;
   clearCart: () => void;
 };
