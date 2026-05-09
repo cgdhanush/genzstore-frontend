@@ -26,7 +26,7 @@ export default function NavbarLayout({ children }: { children: JSX.Element }) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const items = useCartStore((state) => state.items);
 
-  const count = items.reduce((sum, item) => sum + item.qty, 0);
+  const count = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <AppShell header={{ height: 70 }} padding="md">

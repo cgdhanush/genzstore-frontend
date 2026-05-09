@@ -13,6 +13,7 @@ import {
 } from "@mantine/core";
 
 import { login, register } from "../services/auth.service";
+import { useCartStore } from "../store/cartStore";
 
 export default function AuthPage() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function AuthPage() {
       localStorage.setItem("access_token", res.access_token);
 
       console.log(res.user);
-
+      await useCartStore.getState().fetchCart();
       navigate("/home");
     } catch (err) {
       console.error(err);
@@ -56,7 +57,7 @@ export default function AuthPage() {
 
       alert("Signup successful! Please login now.");
 
-      setIsLogin(true); // ✅ SWITCH TO LOGIN SCREEN
+      setIsLogin(true);
     } catch (err) {
       console.error(err);
       alert("Signup failed");

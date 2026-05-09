@@ -23,25 +23,18 @@ import { useCartStore } from "../store/cartStore";
 import CheckoutItem from "../components/CheckoutItem";
 
 export default function CheckoutPage() {
-  const items = useCartStore((state) => state.items);
+  const cartItems = useCartStore((state) => state.items);
 
-  const removeFromCart = useCartStore(
-    (state) => state.removeFromCart
-  );
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
 
-  const increaseQty = useCartStore(
-    (state) => state.increaseQty
-  );
+  const increaseQty = useCartStore((state) => state.increaseQty);
 
-  const decreaseQty = useCartStore(
-    (state) => state.decreaseQty
-  );
+  const decreaseQty = useCartStore((state) => state.decreaseQty);
 
-  const [paymentMethod, setPaymentMethod] =
-    useState("gpay");
+  const [paymentMethod, setPaymentMethod] = useState("gpay");
 
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.price * item.qty,
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
     0
   );
 
@@ -53,25 +46,18 @@ export default function CheckoutPage() {
     <Container size="md" py="xl">
       {/* Header */}
       <Group mb="xl">
-        <ThemeIcon
-          size={48}
-          radius="xl"
-          variant="light"
-          color="blue"
-        >
+        <ThemeIcon size={48} radius="xl" variant="light" color="blue">
           <IconShoppingBag size={28} />
         </ThemeIcon>
 
         <div>
           <Title order={2}>Secure Checkout</Title>
 
-          <Text c="dimmed">
-            Review your items and complete payment
-          </Text>
+          <Text c="dimmed">Review your items and complete payment</Text>
         </div>
       </Group>
 
-      {items.length === 0 ? (
+      {cartItems.length === 0 ? (
         <Paper p="xl" radius="lg" withBorder ta="center">
           <Text size="lg" fw={500}>
             Your cart is empty 🛒
@@ -81,9 +67,9 @@ export default function CheckoutPage() {
         <Group align="flex-start" grow>
           {/* Cart Items */}
           <Stack>
-            {items.map((item) => (
+            {cartItems.map((item) => (
               <CheckoutItem
-                key={item.id}
+                key={item.product.id}
                 item={item}
                 increaseQty={increaseQty}
                 decreaseQty={decreaseQty}
@@ -117,9 +103,7 @@ export default function CheckoutPage() {
               <Text c="dimmed">Delivery</Text>
 
               <Text fw={500}>
-                {deliveryFee === 0
-                  ? "Free"
-                  : `₹${deliveryFee}`}
+                {deliveryFee === 0 ? "Free" : `₹${deliveryFee}`}
               </Text>
             </Group>
 
@@ -140,10 +124,7 @@ export default function CheckoutPage() {
               Payment Method
             </Title>
 
-            <Radio.Group
-              value={paymentMethod}
-              onChange={setPaymentMethod}
-            >
+            <Radio.Group value={paymentMethod} onChange={setPaymentMethod}>
               <Stack gap="sm">
                 <Paper withBorder p="sm" radius="md">
                   <Radio
