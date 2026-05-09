@@ -10,20 +10,16 @@ import {
 } from "@mantine/core";
 
 import { IconTrash } from "@tabler/icons-react";
+import type { Product } from "../types/product";
 
 type CheckoutItemProps = {
   item: {
-    id: number;
-    name: string;
-    price: number;
-    imageId: string;
-    category: string;
-    qty: number;
+    product: Product;
+    quantity: number;
   };
-
-  increaseQty: (id: number) => void;
-  decreaseQty: (id: number) => void;
-  removeFromCart: (id: number) => void;
+  increaseQty: (item: Product) => void;
+  decreaseQty: (item: Product) => void;
+  removeFromCart: (item: Product) => void;
 };
 
 export default function CheckoutItem({
@@ -32,26 +28,30 @@ export default function CheckoutItem({
   decreaseQty,
   removeFromCart,
 }: CheckoutItemProps) {
-
   const baseURL: string = import.meta.env.VITE_API_URL;
 
   return (
     <Card shadow="sm" padding="lg" radius="lg" withBorder>
       <Group justify="space-between" align="center">
         <Group>
-          <Image src={`${baseURL}/products/${item.imageId}/image`} w={90} h={90} radius="md" />
+          <Image
+            src={`${baseURL}/products/${item.product.imageId}/image`}
+            w={90}
+            h={90}
+            radius="md"
+          />
 
           <Box>
             <Text fw={600} size="lg">
-              {item.name}
+              {item.product.name}
             </Text>
 
             <Badge color="blue" variant="light" mt={4}>
-              {item.category}
+              {item.product.category}
             </Badge>
 
             <Text mt={8} fw={700} c="green">
-              ₹{item.price}
+              ₹{item.product.price}
             </Text>
           </Box>
         </Group>
@@ -62,18 +62,18 @@ export default function CheckoutItem({
               size="xs"
               radius="xl"
               variant="light"
-              onClick={() => decreaseQty(item.id)}
+              onClick={() => decreaseQty(item.product)}
             >
               -
             </Button>
 
-            <Text fw={600}>{item.qty}</Text>
+            <Text fw={600}>{item.quantity}</Text>
 
             <Button
               size="xs"
               radius="xl"
               variant="light"
-              onClick={() => increaseQty(item.id)}
+              onClick={() => increaseQty(item.product)}
             >
               +
             </Button>
@@ -85,7 +85,7 @@ export default function CheckoutItem({
             variant="light"
             size="xs"
             radius="xl"
-            onClick={() => removeFromCart(item.id)}
+            onClick={() => removeFromCart(item.product)}
           >
             Remove
           </Button>
