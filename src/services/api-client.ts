@@ -1,5 +1,4 @@
 import axios, { type AxiosInstance } from "axios";
-
 class APIClient {
   private client: AxiosInstance;
 
@@ -44,6 +43,14 @@ class APIClient {
   // DELETE
   async delete<T>(url: string) {
     const response = await this.client.delete<T>(url);
+    return response.data;
+  }
+
+  async getBlob(url: string) {
+    const response = await this.client.get(url, {
+      responseType: "blob",
+    });
+
     return response.data;
   }
 }
