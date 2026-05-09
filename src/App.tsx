@@ -6,6 +6,7 @@ import ShopPage from "./pages/ShopPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import NavbarLayout from "./components/layout/NavBar";
 import CheckoutPage from "./pages/CheckoutPage";
+import AuthPage from "./pages/AuthPage";
 
 import theme from "./theme";
 import "@mantine/core/styles.css";
@@ -19,7 +20,9 @@ export default function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
-
+            
+            <Route path="/auth" element={<AuthPage />} />
+            
             {/* 404 PAGE */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

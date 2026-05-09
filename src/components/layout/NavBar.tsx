@@ -3,12 +3,11 @@ import {
   Group,
   Burger,
   Text,
-  Button,
   TextInput,
   ActionIcon,
   useMantineColorScheme,
   Anchor,
-  Indicator
+  Indicator,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -16,6 +15,7 @@ import {
   IconShoppingCart,
   IconSun,
   IconMoon,
+  IconUser
 } from "@tabler/icons-react";
 import { useCartStore } from "../../store/cartStore";
 
@@ -77,8 +77,11 @@ export default function NavbarLayout({ children }: { children: JSX.Element }) {
               >
                 <IconShoppingCart size={18} />
               </ActionIcon>
+             
             </Indicator>
-            <Button size="sm">Login</Button>
+             <ActionIcon component="a" href="/auth">
+                <IconUser />
+              </ActionIcon>
           </Group>
 
           {/* Mobile Burger */}
