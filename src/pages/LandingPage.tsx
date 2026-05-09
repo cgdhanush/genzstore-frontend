@@ -2,6 +2,7 @@ import { Stack } from "@mantine/core";
 import Categories from "../components/Categories";
 import Hero from "../components/Hero";
 import ProductGrid from "../components/ProductGrid";
+import Footer from "../components/Footer";
 
 export default function LandingPage() {
   return (
@@ -9,6 +10,7 @@ export default function LandingPage() {
       <Hero />
       <Categories />
       <ProductGrid />
+      <Footer />
     </Stack>
   );
 }
