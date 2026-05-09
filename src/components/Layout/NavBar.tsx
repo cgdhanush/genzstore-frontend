@@ -9,6 +9,7 @@ import {
   Drawer,
   Stack,
   useMantineColorScheme,
+  Anchor,
 } from "@mantine/core";
 
 import { useDisclosure } from "@mantine/hooks";
@@ -33,10 +34,10 @@ export default function NavbarLayout({ children }: { children: JSX.Element }) {
 
           {/* Desktop Nav */}
           <Group gap="md" visibleFrom="sm">
-            <Text>Home</Text>
-            <Text>Shop</Text>
-            <Text>Categories</Text>
-            <Text>Deals</Text>
+            <Anchor href="/" >Home</Anchor>
+            <Anchor href="/shop">Shop</Anchor>
+            <Anchor href="/categories">Categories</Anchor>
+            <Anchor href="/deals">Deals</Anchor>
           </Group>
 
           {/* Search + Cart */}
