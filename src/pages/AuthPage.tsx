@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Paper,
@@ -14,6 +15,8 @@ import {
 import { login, register } from "../services/auth.service";
 
 export default function AuthPage() {
+  const navigate = useNavigate();
+
   const [isLogin, setIsLogin] = useState(true);
 
   const [name, setName] = useState("");
@@ -21,27 +24,23 @@ export default function AuthPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  //
   // LOGIN
-  //
   const handleLogin = async () => {
     try {
-      const res = await login({
-        email,
-        password,
-      });
+      const res = await login({ email, password });
 
       localStorage.setItem("access_token", res.access_token);
 
       console.log(res.user);
+
+      navigate("/home");
     } catch (err) {
       console.error(err);
+      alert("Login failed");
     }
   };
 
-  //
   // REGISTER
-  //
   const handleRegister = async () => {
     try {
       if (password !== confirmPassword) {
@@ -49,29 +48,25 @@ export default function AuthPage() {
         return;
       }
 
-      const res = await register({
+      await register({
         name,
         email,
         password,
       });
 
-      localStorage.setItem("access_token", res.access_token);
+      alert("Signup successful! Please login now.");
 
-      console.log(res.user);
+      setIsLogin(true); // ✅ SWITCH TO LOGIN SCREEN
     } catch (err) {
       console.error(err);
+      alert("Signup failed");
     }
   };
 
-  //
   // SUBMIT
-  //
   const handleSubmit = () => {
-    if (isLogin) {
-      handleLogin();
-    } else {
-      handleRegister();
-    }
+    if (isLogin) handleLogin();
+    else handleRegister();
   };
 
   return (
@@ -82,57 +77,50 @@ export default function AuthPage() {
         </Title>
 
         <Stack>
-          {/* NAME */}
           {!isLogin && (
             <TextInput
               label="Full Name"
               placeholder="John Doe"
-              required
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
           )}
 
-          {/* EMAIL */}
           <TextInput
             label="Email"
             placeholder="you@example.com"
-            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
-          {/* PASSWORD */}
           <PasswordInput
             label="Password"
             placeholder="Your password"
-            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
-          {/* CONFIRM PASSWORD */}
           {!isLogin && (
             <PasswordInput
               label="Confirm Password"
               placeholder="Confirm password"
-              required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              required
             />
           )}
 
-          {/* BUTTON */}
           <Button fullWidth mt="md" onClick={handleSubmit}>
             {isLogin ? "Login" : "Sign Up"}
           </Button>
 
-          {/* SWITCH MODE */}
           <Text ta="center" size="sm">
             {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
             <Anchor
               component="button"
-              type="button"
               onClick={() => setIsLogin(!isLogin)}
             >
               {isLogin ? "Sign Up" : "Login"}
