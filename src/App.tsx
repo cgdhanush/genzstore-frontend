@@ -10,6 +10,7 @@ import AuthPage from "./pages/AuthPage";
 
 import theme from "./theme";
 import "@mantine/core/styles.css";
+import ProfilePage from "./pages/UserPage";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<LandingPage />} />
             <Route path="/shop" element={<ShopPage />} />
+            <Route path="/user" element={<ProfilePage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             
             <Route path="/auth" element={<AuthPage />} />
