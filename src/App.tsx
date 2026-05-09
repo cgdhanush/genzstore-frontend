@@ -9,7 +9,7 @@ import NavbarLayout from "./components/Layout/NavBar";
 export default function App() {
   return (
     <>
-      <MantineProvider theme={theme} defaultColorScheme="dark">
+      <MantineProvider theme={theme}>
         <NavbarLayout>
           <LandingPage />
         </NavbarLayout>
