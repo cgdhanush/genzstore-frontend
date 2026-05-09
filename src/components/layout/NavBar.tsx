@@ -60,7 +60,7 @@ export default function NavbarLayout({ children }: { children: JSX.Element }) {
               )}
             </ActionIcon>
 
-            <ActionIcon variant="light" size="lg">
+            <ActionIcon component="a" href="/checkout" variant="light" size="lg">
               <IconShoppingCart size={18} />
             </ActionIcon>
 
