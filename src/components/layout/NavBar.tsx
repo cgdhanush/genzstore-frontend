@@ -45,6 +45,9 @@ export default function NavbarLayout({ children }: { children: JSX.Element }) {
             <Anchor href="/shop" c="text" underline="never">
               Shop
             </Anchor>
+            <Anchor href="/orders" c="text" underline="never">
+              Orders
+            </Anchor>
           </Group>
 
           {/* RIGHT: Actions */}
