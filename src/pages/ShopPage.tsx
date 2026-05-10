@@ -20,6 +20,7 @@ import apiClient from "../services/api-client";
 import type { Product } from "../types/product";
 
 import ProductFilters from "../components/ProductFilters";
+import CartButton from "../components/button/CartButton";
 
 export default function ShopPage() {
   const [search, setSearch] = useState("");
@@ -179,9 +180,7 @@ export default function ShopPage() {
                     ₹{product.price}
                   </Text>
 
-                  <Button fullWidth mt="md" radius="md" variant="light">
-                    Add to Cart
-                  </Button>
+                  <CartButton product={product} />
                 </Card>
               ))
             )}
